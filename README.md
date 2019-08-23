@@ -1,2 +1,2 @@
 # E-Shop
-Online Store
+Online Store.
