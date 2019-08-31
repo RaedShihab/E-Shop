@@ -7,4 +7,13 @@ function getAll() {
    
 }
 
-export default getAll;
+function getItemByid(id) {
+  const item = products.find(item => item.id === parseInt(id))
+//   return item
+   return Promise.resolve(item)
+}
+
+export default {
+    getItemByid,
+    getAll
+}

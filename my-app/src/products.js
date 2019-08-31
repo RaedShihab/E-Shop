@@ -1,6 +1,6 @@
 import React from 'react'
 import ProductsItem from './items/productItem'
-import getAll from './api/getAllProducts'
+import getAllProducts from './api/getAllProducts'
 
 class Products extends React.Component {
 
@@ -12,7 +12,7 @@ class Products extends React.Component {
       }
 
     componentDidMount() {
-        getAll()
+        getAllProducts.getAll()
         .then(data => {
             this.setState({
                 products: data,
