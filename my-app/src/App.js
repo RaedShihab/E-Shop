@@ -3,6 +3,7 @@ import './App.css';
 import Home from './home';
 import Products from './products';
 import Cart from './cart';
+import Product from './items/product'
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 function App() {
@@ -31,8 +32,9 @@ function App() {
 </nav>
 
     <Route path='/' component = {Home} exact></Route>
-    <Route path='/products' component = {Products}></Route>
+    <Route path='/products' component = {Products} exact></Route>
     <Route path='/cart' component = {Cart}></Route>
+    <Route path='/products/:id' component = {Product}></Route>
     </div>
     </Router>
     

@@ -28,7 +28,7 @@ class Products extends React.Component {
             Products
         </h1>
             <div className='row'>
-                <div className={'col-4'}>
+                <div className={'col-4'} key={this.state.products}>
                   <ProductsItem products={this.state.products} />
                 </div>
             </div>   
