@@ -6,6 +6,20 @@ class Product extends React.Component {
     state = {
         loading: true,
         item : {},
+        itemNumber: 0,
+    }
+    
+    //  handelChangeItemsNumber = (e) => {
+    //     this.setState({
+    //         itemNumber: e.target.value
+    //     },  console.log(this.state.itemNumber))
+       
+    // }
+
+    handelChangeItemsNumber(e) {
+        this.setState({
+            itemNumber: e.target.value
+        }, console.log(this.state.itemNumber))
     }
 
     componentDidMount() {
@@ -24,9 +38,8 @@ class Product extends React.Component {
         if(this.state.loading) {
             return 'Loading...'
         }
-
+        
         const item = this.state.item
-        console.log(item)
         return (
             <div>
                 <div className={'row'}>
@@ -38,10 +51,13 @@ class Product extends React.Component {
                     <p>Price: {item.price}$</p>
                     <p>Description: {' '+item.description}</p>
                     <br/><br/>
-                    <input type='number'></input>
+                    <input type='number' value={this.state.itemNumber} onChange={this.handelChangeItemsNumber.bind(this)} ></input>
                     <br/><br/>
+                    <p>
+                        {this.state.itemNumber * item.price}
+                    </p>
                     <button className='btn btn-primary'>
-                        Add To Cart
+                        Add To Cart 
                     </button>
                    </div>
 
