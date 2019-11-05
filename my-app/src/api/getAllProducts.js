@@ -1,4 +1,3 @@
-import React from 'react';
 import products from './products.json';
 
 
@@ -9,7 +8,7 @@ function getAll() {
 
 function getItemByid(id) {
   const item = products.find(item => item.id === parseInt(id))
-//   return item
+//   return item    
    return Promise.resolve(item)
 }
 

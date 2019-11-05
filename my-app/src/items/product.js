@@ -17,6 +17,8 @@ class Product extends React.Component {
     // }
 
     handelChangeItemsNumber(e) {
+        if(e.target.value < 0)
+        return;
         this.setState({
             itemNumber: e.target.value
         }, console.log(this.state.itemNumber))
