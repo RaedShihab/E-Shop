@@ -1,5 +1,6 @@
 import React from 'react';
 import getAllProducts from "../api/getAllProducts";
+import products from '../api/products.json';
 
 class Product extends React.Component {
 
@@ -25,23 +26,35 @@ class Product extends React.Component {
         })
     }
 
-    componentDidMount() {
+    getProduct = ()=> {
         console.log('props', this.props )
-        const id = this.props.match.params.id 
-        async function async() {
-            let item = await getAllProducts.getItemByid(id)
-            console.log(item) 
-            return item
-        }
-          async()
-          .then(item => {
-              this.setState({
-                  item: item,
-                  loading: false
-              })
-          }) .catch (err => {
-              alert('ERR')
-          })
+        const id = this.props.match.params.id;
+        const product = products.filter((item)=> {
+            return item.id === id;
+        })
+        console.log('dsds', product)
+        return product;
+    }
+
+    componentDidMount() {
+       this.setState({
+        item: this.getProduct(),
+        loading: false
+       })
+        // async function async() {
+        //     let item = await getAllProducts.getItemByid(id)
+        //     console.log(item) 
+        //     return item
+        // }
+        //   async()
+        //   .then(item => {
+        //       this.setState({
+        //           item: item,
+        //           loading: false
+        //       })
+        //   }) .catch (err => {
+        //       alert('ERR')
+        //   })
         
     //       getAllProducts.getItemByid(id)
     //       .then(itemById => {

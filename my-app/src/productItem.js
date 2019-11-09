@@ -25,10 +25,15 @@ class ProductsItem extends React.Component {
     }
 }
 
-const mapStateToProps = (state)=> {
+// const mapStateToProps = (state)=> {
+//     return {
+//         fromProps: state
+//     }
+// }
+
+export default connect((state)=> {
     return {
         fromProps: state
     }
-}
-
-export default connect(mapStateToProps)(ProductsItem);
+})
+(ProductsItem);
