@@ -3,7 +3,8 @@ import './App.css';
 import Home from './home';
 import Products from './products';
 import Cart from './cart';
-import Product from './items/product'
+import Product from './items/product';
+import IconCom from './iconComponent';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
       </li>
     </ul>
   </div>
+  <IconCom />
 </nav>
 
     <Route path='/' component = {Home} exact></Route>

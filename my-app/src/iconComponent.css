@@ -1,0 +1,10 @@
+#icon-comp i {
+font-size: 30px;
+}
+
+#icon-comp span {
+font-size: 13px;
+position: absolute;
+top: 5px;
+right:7px;
+}

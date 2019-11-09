@@ -11,13 +11,6 @@ class Product extends React.Component {
         itemNumber: '',
     }
     
-     handelChangeItemsNumber = (e) => {
-        this.setState({
-            itemNumber: e.target.value
-        },  console.log(this.state.itemNumber))
-       
-    } 
-
     handelChangeItemsNumber(e) {
         if(e.target.value < 0) {
         return;
@@ -26,11 +19,17 @@ class Product extends React.Component {
             itemNumber: e.target.value
         })
     }
+    componentDidMount() {
+        setTimeout(()=>this.setState({
+            item: this.props.product[0],
+            loading: false
+        }), 1000)
+    }
 
     // getProduct = ()=> {
     //     console.log('props', this.props )
     //     const id = this.props.match.params.id;
-    //     const product = products.filter((item)=> {
+    //     const product = products.filter((item)=> {1
     //         return item.id === id;
     //     })
     //     console.log('dsds', product)
@@ -68,16 +67,13 @@ class Product extends React.Component {
     // }
 
     render() {
-        console.log(this.props.product)
-        // if(this.state.loading) {
-        //     return 'Loading...'
-        // }
+        if(this.state.loading) {
+            return 'Loading...'
+        }
         
-         const item = this.props.product[0]
+         const item = this.state.item
         return (
             <div>
-                Product
-
                 <div className={'row'}>
                     <div className={'col-6'}>
                         <img src={item.image}  width={'100%'}/>
@@ -96,8 +92,6 @@ class Product extends React.Component {
                         Add To Cart 
                     </button>
                    </div>
-
-
                 </div>
             </div>
         )

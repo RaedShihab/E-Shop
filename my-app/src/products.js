@@ -3,6 +3,8 @@ import ProductsItem from './productItem'
 import getAllProducts from './api/getAllProducts'
 import {connect} from 'react-redux';
 import {showProductAction} from './action/action-creator';
+import {showAllProductsAction} from './action/action-creator';
+
 // import {connect} from 'react-redux';
 
 class Products extends React.Component {
@@ -19,12 +21,16 @@ class Products extends React.Component {
     //         })
     //     })
     // }
+
+    componentDidMount() {
+        this.props.showAllProductsAction()
+    }
     
     render() {
         return (
         <div>
         <h1>
-            Products
+            Productsss
         </h1>
             <div className='row'>
                 <div className={'col-4'} >
@@ -63,5 +69,5 @@ export default connect((state)=> {
     return {
         fromProps: state
     }
-}, {showProductAction})
+}, {showAllProductsAction, showProductAction})
 (Products);
