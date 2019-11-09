@@ -1,12 +1,13 @@
 import React from 'react'
+import {connect} from 'react-redux';
 
 class ProductsItem extends React.Component {
     render() {
-        console.log(this.props)
+        console.log('ProductsItem',this.props)
         return (
             <div>
-            {this.props.products.map(item =>  
-                <div key= {item.id}> 
+            {this.props.fromProps.map(item =>  
+                <div key= {item.id}>
                         <div className="card" >
                             <img src={item.image} className="card-img-top" alt="" />
                                 <div className="card-body">
@@ -14,14 +15,20 @@ class ProductsItem extends React.Component {
                                     <p className="card-text">{item.price}</p>
                                     <a href = {'/products/'+ item.id} className="btn btn-primary">Details</a>
                                 </div>
-                        </div> 
+                        </div>
                 </div>
             )}
             </div>
             
         
-        ) 
+        )
     }
 }
 
-export default ProductsItem;
+const mapStateToProps = (state)=> {
+    return {
+        fromProps: state
+    }
+}
+
+export default connect(mapStateToProps)(ProductsItem);

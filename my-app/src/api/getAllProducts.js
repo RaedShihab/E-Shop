@@ -1,9 +1,7 @@
 import products from './products.json';
 
-
 function getAll() {
     return Promise.resolve(products)
-   
 }
 
 function getItemByid(id) {

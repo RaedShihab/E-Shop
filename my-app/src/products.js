@@ -1,35 +1,33 @@
 import React from 'react'
-import ProductsItem from './items/productItem'
+import ProductsItem from './productItem'
 import getAllProducts from './api/getAllProducts'
+// import {connect} from 'react-redux';
 
 class Products extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = { 
-            products: []
-         };
       }
 
-    componentDidMount() {
-        getAllProducts.getAll()
-        .then(data => {
-            this.setState({
-                products: data,
-            })
-           console.log(this.state.products)
-        })
-    }
+    // componentDidMount() {
+    //     getAllProducts.getAll()
+    //     .then(data => {
+    //         this.setState({
+    //             products: data,
+    //         })
+    //     })
+    // }
     
     render() {
+        console.log(this.props)
         return (
         <div>
         <h1>
             Products
         </h1>
             <div className='row'>
-                <div className={'col-4'} key={this.state.products}>
-                  <ProductsItem products={this.state.products} />
+                <div className={'col-4'} >
+                  <ProductsItem />
                 </div>
             </div>   
         </div>
@@ -37,4 +35,11 @@ class Products extends React.Component {
     }
 }
 
+// const mapStateToProps = (state)=> {
+//     return {
+//         fromProps: state
+//     }
+// }
+
+// export default connect(mapStateToProps)(Products);
 export default Products;

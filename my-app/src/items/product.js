@@ -6,7 +6,7 @@ class Product extends React.Component {
     state = {
         loading: true,
         item : {},
-        itemNumber: 0,
+        itemNumber: '',
     }
     
     //  handelChangeItemsNumber = (e) => {
@@ -14,26 +14,43 @@ class Product extends React.Component {
     //         itemNumber: e.target.value
     //     },  console.log(this.state.itemNumber))
        
-    // }
+    // } 
 
     handelChangeItemsNumber(e) {
-        if(e.target.value < 0)
+        if(e.target.value < 0) {
         return;
+        }
         this.setState({
             itemNumber: e.target.value
-        }, console.log(this.state.itemNumber))
+        })
     }
 
     componentDidMount() {
+        console.log('props', this.props )
         const id = this.props.match.params.id 
-          getAllProducts.getItemByid(id)
-          .then(itemById => {
-              setTimeout(() => this.setState({
-                loading:  false,
-              item : itemById
-      }),1000) 
+        async function async() {
+            let item = await getAllProducts.getItemByid(id)
+            console.log(item) 
+            return item
+        }
+          async()
+          .then(item => {
+              this.setState({
+                  item: item,
+                  loading: false
+              })
+          }) .catch (err => {
+              alert('ERR')
+          })
+        
+    //       getAllProducts.getItemByid(id)
+    //       .then(itemById => {
+    //           setTimeout(() => this.setState({
+    //             loading:  false,
+    //             item : itemById
+    //   }),1000) 
                 
-        });
+    //     });
     }
 
     render() {
@@ -69,5 +86,7 @@ class Product extends React.Component {
         )
     }
 }
+
+
 
 export default Product;
