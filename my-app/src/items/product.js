@@ -1,7 +1,8 @@
 import React from 'react';
 import getAllProducts from "../api/getAllProducts";
 import products from '../api/products.json';
-import {connect} from 'react-redux'
+import {connect} from 'react-redux';
+import {addItemToCartAction} from '../action/action-creator'
 
 class Product extends React.Component {
 
@@ -67,6 +68,7 @@ class Product extends React.Component {
     // }
 
     render() {
+        console.log(this.props.product)
         if(this.state.loading) {
             return 'Loading...'
         }
@@ -88,7 +90,9 @@ class Product extends React.Component {
                     <p>
                         {this.state.itemNumber * item.price}
                     </p>
-                    <button className='btn btn-primary'>
+                    <button 
+                    onClick={()=>this.props.addItemToCartAction(item)}
+                    className='btn btn-primary'>
                         Add To Cart 
                     </button>
                    </div>
@@ -104,4 +108,4 @@ export default connect((state)=> {
     return {
         product: state
     }
-})(Product);
+}, {addItemToCartAction})(Product);
