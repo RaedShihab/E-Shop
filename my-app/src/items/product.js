@@ -1,14 +1,16 @@
 import React from 'react';
 import {showProductAction} from '../action/action-creator';
 import {connect} from 'react-redux';
-import {addItemToCartAction} from '../action/action-creator'
+import {addItemToCartAction} from '../action/action-creator';
 
 class Product extends React.Component {
-
-    state = {
+    constructor() {
+        super()
+        this.state = {
         loading: true,
         item : {},
         itemNumber: '',
+        }
     }
     
     handelChangeItemsNumber(e) {
@@ -19,64 +21,25 @@ class Product extends React.Component {
             itemNumber: e.target.value
         })
     }
+    
     componentDidMount() {
+        const id = parseInt(this.props.match.params.id )
+        this.props.showProductAction(id)
         setTimeout(()=>this.setState({
-            item: this.props.product[0],
+            item: this.props.location.state.item,
             loading: false
         }), 1000)
     }
 
-    // getProduct = ()=> {
-    //     console.log('props', this.props )
-    //     const id = this.props.match.params.id;
-    //     const product = products.filter((item)=> {1
-    //         return item.id === id;
-    //     })
-    //     console.log('dsds', product)
-    //     return product;
-    // }
-
-    // componentDidMount() {
-    //    this.setState({
-    //     item: this.getProduct(),
-    //     loading: false
-    //    })
-    //     // async function async() {
-    //     //     let item = await getAllProducts.getItemByid(id)
-    //     //     console.log(item) 
-    //     //     return item
-    //     // }
-    //     //   async()
-    //     //   .then(item => {
-    //     //       this.setState({
-    //     //           item: item,
-    //     //           loading: false
-    //     //       })
-    //     //   }) .catch (err => {
-    //     //       alert('ERR')
-    //     //   })
-        
-    // //       getAllProducts.getItemByid(id)
-    // //       .then(itemById => {
-    // //           setTimeout(() => this.setState({
-    // //             loading:  false,
-    // //             item : itemById
-    // //   }),1000) 
-                
-    // //     });
-    // }
-
     render() {
-        console.log(this.props)
-        // console.log(this.props.product)
-        // if(this.state.loading) {
-        //     return 'Loading...'
-        // }
+        if(this.state.loading) {
+            return 'Loading...'
+        }
         
-        //  const item = this.state.item
+         const item = this.state.item
         return (
             <div>
-                {/* <div className={'row'}>
+                <div className={'row'}>
                     <div className={'col-6'}>
                         <img src={item.image}  width={'100%'}/>
                     </div>
@@ -96,16 +59,14 @@ class Product extends React.Component {
                         Add To Cart 
                     </button>
                    </div>
-                </div> */}
+                </div>
             </div>
         )
     }
 }
 
-
-
 export default connect((state)=> {
     return {
-        product: state
+        product1: state
     }
 }, {addItemToCartAction, showProductAction})(Product);

@@ -6,23 +6,7 @@ import {showProductAction} from './action/action-creator';
 import {showAllProductsAction} from './action/action-creator';
 import { Link } from "react-router-dom";
 
-
-// import {connect} from 'react-redux';
-
 class Products extends React.Component {
-
-    constructor(props) {
-        super(props);
-      }
-
-    // componentDidMount() {
-    //     getAllProducts.getAll()
-    //     .then(data => {
-    //         this.setState({
-    //             products: data,
-    //         })
-    //     })
-    // }
 
     componentDidMount() {
         this.props.showAllProductsAction()
@@ -44,7 +28,14 @@ class Products extends React.Component {
                                 <div className="card-body">
                                     <h5 className="card-title">{item.name}</h5>
                                     <p className="card-text">{item.price}</p>
-                                    <Link to={'product/'+item.id} className="btn btn-primary">Details</Link>
+                                        <button
+                                        onClick={
+                                           ()=> this.props.history.push("product/"+item.id, {
+                                                item: item
+                                              })
+                                        }
+                                        className="btn btn-primary"
+                                        >Details</button>
                                 </div>
                         </div>
                 </div>
@@ -57,16 +48,9 @@ class Products extends React.Component {
     }
 }
 
-// const mapStateToProps = (state)=> {
-//     return {
-//         fromProps: state
-//     }
-// }
-
-// export default connect(mapStateToProps)(Products);
 export default connect((state)=> {
     return {
         fromProps: state
     }
-}, {showAllProductsAction, showProductAction})
+}, {showAllProductsAction})
 (Products);

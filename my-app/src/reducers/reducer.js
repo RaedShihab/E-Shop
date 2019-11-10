@@ -3,7 +3,7 @@ import {showProductType} from '../action/action-types';
 import {showAllProductsType} from '../action/action-types';
 import {addItemToCartType} from '../action/action-types';
 
-const reducer = (state=[], action)=> {
+const reducer = (state=[4], action)=> {
     let product = [];
     let cartProduct = [];
 
@@ -11,10 +11,9 @@ const reducer = (state=[], action)=> {
         return products
     }
     else if(action.type === showProductType) {
-        console.log(products, action.id, product)
      product = products.filter((product) => {
         return action.id === product.id
-    })
+    })  
     return product
     }
     // if(action.type === addItemToCartType) {
@@ -24,9 +23,7 @@ const reducer = (state=[], action)=> {
     //     alert('HHHI')
     //     return state
     // }
-    else {
-     return state;
-    }
+    return state
 }
 
 export default reducer;
