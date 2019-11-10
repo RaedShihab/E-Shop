@@ -1,6 +1,5 @@
 import React from 'react';
-import getAllProducts from "../api/getAllProducts";
-import products from '../api/products.json';
+import {showProductAction} from '../action/action-creator';
 import {connect} from 'react-redux';
 import {addItemToCartAction} from '../action/action-creator'
 
@@ -68,15 +67,16 @@ class Product extends React.Component {
     // }
 
     render() {
-        console.log(this.props.product)
-        if(this.state.loading) {
-            return 'Loading...'
-        }
+        console.log(this.props)
+        // console.log(this.props.product)
+        // if(this.state.loading) {
+        //     return 'Loading...'
+        // }
         
-         const item = this.state.item
+        //  const item = this.state.item
         return (
             <div>
-                <div className={'row'}>
+                {/* <div className={'row'}>
                     <div className={'col-6'}>
                         <img src={item.image}  width={'100%'}/>
                     </div>
@@ -96,7 +96,7 @@ class Product extends React.Component {
                         Add To Cart 
                     </button>
                    </div>
-                </div>
+                </div> */}
             </div>
         )
     }
@@ -108,4 +108,4 @@ export default connect((state)=> {
     return {
         product: state
     }
-}, {addItemToCartAction})(Product);
+}, {addItemToCartAction, showProductAction})(Product);

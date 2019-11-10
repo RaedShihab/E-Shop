@@ -1,9 +1,11 @@
-import React from 'react'
-import ProductsItem from './productItem'
-import getAllProducts from './api/getAllProducts'
+import React from 'react';
+import ProductsItem from './productItem';
+import getAllProducts from './api/getAllProducts';
 import {connect} from 'react-redux';
 import {showProductAction} from './action/action-creator';
 import {showAllProductsAction} from './action/action-creator';
+import { Link } from "react-router-dom";
+
 
 // import {connect} from 'react-redux';
 
@@ -33,7 +35,7 @@ class Products extends React.Component {
             Productsss
         </h1>
             <div className='row'>
-                <div className={'col-4'} >
+                <div className={'col-4'}>
                 <div>
             {this.props.fromProps.map(item =>  
                 <div key= {item.id}>
@@ -42,10 +44,7 @@ class Products extends React.Component {
                                 <div className="card-body">
                                     <h5 className="card-title">{item.name}</h5>
                                     <p className="card-text">{item.price}</p>
-                                    <button onClick={()=> {
-                                        this.props.showProductAction(item.id)
-                                         this.props.history.push('/product')
-                                        }}  className="btn btn-primary">Details</button>
+                                    <Link to={'product/'+item.id} className="btn btn-primary">Details</Link>
                                 </div>
                         </div>
                 </div>

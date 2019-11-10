@@ -33,7 +33,7 @@ function App() {
     <Route path='/' component = {Home} exact></Route>
     <Route path='/products' component = {Products} exact></Route>
     <Route path='/cart' component = {Cart}></Route>
-    <Route path='/product' component = {Product}></Route>
+    <Route path='/product/:id' component = {Product}></Route>
     </div>
     </Router>
     
